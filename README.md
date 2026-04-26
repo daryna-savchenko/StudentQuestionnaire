@@ -23,3 +23,4 @@ buttons:
   - age must be a positive number;
   - email should contain "@" sign.
   
+<img width="520" height="418" alt="StudentQuestionnaire" src="https://github.com/user-attachments/assets/fe2a5292-73a6-440e-a080-39d3ed25c86e" />
