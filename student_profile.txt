@@ -1,0 +1,10 @@
+Student
+Name: врв
+Surname: ввв
+Age: 2
+Group: javax.swing.ButtonGroup@77cab02
+Email: вв@
+Year of study: 3 Year
+Gender: Male
+Hobbies: Programming
+About student: hi

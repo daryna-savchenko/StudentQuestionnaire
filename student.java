@@ -17,11 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 
 
 public class student {
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> createAndShowUI());
+    }
+    private static void createAndShowUI() {
         JFrame frame = new JFrame("Student Profile");
         JPanel mainpanel = new JPanel(new BorderLayout(5, 5));
         mainpanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 15, 15));
@@ -40,10 +44,10 @@ public class student {
         JRadioButton female = new JRadioButton("Female");
         JRadioButton other = new JRadioButton("Other");
         male.setSelected(true);
-        ButtonGroup group = new ButtonGroup();
-        group.add(male);
-        group.add(female);
-        group.add(other);
+        ButtonGroup genderGroup = new ButtonGroup();
+        genderGroup.add(male);
+        genderGroup.add(female);
+        genderGroup.add(other);
 
         JPanel genderPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
         genderPanel.add(male);
@@ -101,12 +105,12 @@ public class student {
             String name = nameField.getText().trim();
             String surname = surnameField.getText().trim();
             String ageText = ageField.getText().trim();
-            String gr = groupField.getText().trim();
+            String group = groupField.getText().trim();
             String email = emailField.getText().trim();
             String year = (String) comboBox.getSelectedItem();
             String about = aboutArea.getText().trim();
 
-            if (name.isEmpty() || surname.isEmpty() || ageText.isEmpty() || gr.isEmpty()) {
+            if (name.isEmpty() || surname.isEmpty() || ageText.isEmpty() || group.isEmpty()) {
                 JOptionPane.showMessageDialog(frame, "Please fill in Name, Surname, Age and Group.");
                 return;
             }
@@ -140,11 +144,15 @@ public class student {
                 hobbies.append("Programming");
             }
             if (sports.isSelected()) {
+                if (hobbies.length() > 0) {
+                    hobbies.append(", ");
+                }
                 hobbies.append("Sports");
             }
             if (hobbies.length() == 0) {
                 hobbies.append("No hobbies");
             }
+            
 
             
             try (PrintWriter writer = new PrintWriter(new FileWriter("student_profile.txt"))) {
